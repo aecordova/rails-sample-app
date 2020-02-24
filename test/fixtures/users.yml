@@ -1,9 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString
+#one:
+  #name: MyString
+  #email: MyString
 
-two:
-  name: MyString
-  email: MyString
+#two:
+  #name: MyString
+  #email: MyString
+  #commented out fixtures as they wont be needed for this exercise
