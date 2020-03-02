@@ -7,6 +7,7 @@ ruby '2.7.0'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
 gem 'bcrypt'
 gem 'bootstrap-sass'
+gem 'jquery-rails'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
