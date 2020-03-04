@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include SessionsHelper ##Why do I have to include it?
+
   def show
     @user = User.find(params[:id])
   end
@@ -12,6 +14,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = 'Welcome to the sample app!!'
+      redirect_to user_path @user
     else
       render 'new'
     end
