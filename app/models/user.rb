@@ -30,6 +30,7 @@ class User < ApplicationRecord
 
   # Check if a user us auth by matchin token to digest
   def authenticated? (remember_token)
+    return false if remember_digest.nil?
     BCrypt::Password.new(:remember_digest) == remember_token
   end
 
