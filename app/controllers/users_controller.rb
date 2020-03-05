@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include SessionsHelper ##Why do I have to include it?
 
-  before_action :only_logged_in, only: [:edit, :update]
+  before_action :only_logged_in, only: [:edit, :update,:index]
   before_action :only_modify_self, only: [:edit, :update]
 
   def show
@@ -35,6 +35,10 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def index
+    @users = User.paginate(page: params[:page])
   end
     
 
