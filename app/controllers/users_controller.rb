@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
-  include SessionsHelper ##Why do I have to include it?
 
-  before_action :only_logged_in, only: [:edit, :update,:index]
-  before_action :only_modify_self, only: [:edit, :update]
-  before_action :admin_only, only:[:destroy]
+  before_action :only_logged_in, only: %i[edit update index]
+  before_action :only_modify_self, only: %i[edit update]
+  before_action :admin_only, only: [:destroy]
 
   def show
     @user = User.find(params[:id])
-    redirect_to root_url and return unless @user.activated?
+    @microposts = @user.microposts.paginate(page: params[:page])
+    redirect_to root_url && return unless @user.activated?
   end
 
   def new
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
     @user = User.find(params[:id])
   end
@@ -48,7 +48,6 @@ class UsersController < ApplicationController
     flash[:success] = 'User deleted'
     redirect_to users_url
   end
-    
 
   private
 
@@ -56,17 +55,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
   end
-  
-  # Before Filters
 
-  # Checks if user is logged in to permit action
-  def only_logged_in
-    unless logged_in?
-      store_location
-      flash[:danger] = 'Please log in to perform that action'
-      redirect_to login_url
-    end
-  end
+  # Before Filters
 
   def only_modify_self
     @user = User.find(params[:id])
