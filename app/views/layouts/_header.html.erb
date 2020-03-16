@@ -8,10 +8,17 @@
       <% if logged_in? %>
         <li class="nav-item"><%= link_to 'Users', users_path %></li>
         <li class="nav-item dropdown">
-          <a href="" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Account</a>
+          <a href="" 
+             class="nav-link dropdown-toggle" 
+             href="#" 
+             id="navbarDropdown" 
+             role="button" 
+             data-toggle="dropdown" 
+             aria-haspopup="true" 
+             aria-expanded="false"> Account</a>
           <ul class="dropdown-menu">
             <li><%= link_to "Profile", current_user %></li>
-            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+            <li><%= link_to "Settings", edit_user_path(current_user) %></li
             <li class="divider"></li>
             <li><%= link_to "Logout", logout_path, method: :delete %></li>
           </ul>
@@ -19,9 +26,6 @@
       <% else %>
         <li class="nav-item"><%= link_to "Log in", login_path %></li>
       <% end %>
-      </ul>
-        
-      </ul>
     </nav>
   </div>
 </header>
